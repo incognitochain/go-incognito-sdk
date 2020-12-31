@@ -17,7 +17,10 @@ func TestCreateAndSendBurningRequest(t *testing.T) {
 
 	metadata := map[string]interface{}{}
 	metadata["Privacy"] = true
+
+	//token centralize
 	metadata["TokenID"] = "ffd8d42dc40a8d166ea4848baf8b5f6e9fe0e9c30d60062eb7d44a8df9e00854"
+
 	metadata["TokenTxType"] = 1
 	metadata["TokenName"] = ""
 	metadata["TokenSymbol"] = ""
