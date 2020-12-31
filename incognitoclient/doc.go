@@ -50,7 +50,7 @@ Example:
 		fmt.Println("validator key", validatorKey)
 		fmt.Println("shard id", shardId)
 
-        //send prv
+		//send prv
 		listPaymentAddresses := entity.WalletSend{
 			Type: 0,
 			PaymentAddresses: map[string]uint64{
