@@ -13,24 +13,6 @@ func (t *IncognitoTestSuite) TestListPrivacyCustomToken() {
 	fmt.Println(result)
 }
 
-func (t *IncognitoTestSuite) TestSendPrvNormal() {
-	tx, err := t.wallet.SendToken(
-		"112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5",
-		"12Rsf3wFnThr3T8dMafmaw4b3CzUatNao61dkj8KyoHfH5VWr4ravL32sunA2z9UhbNnyijzWFaVDvacJPSRFAq66HU7YBWjwfWR7Ff",
-		PRVToken,
-		500000000000,
-		0,
-		"",
-	)
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-
-	fmt.Println(tx)
-}
-
 func (t *IncognitoTestSuite) TestSendPrvPrivacy() {
 	tx, err := t.wallet.SendToken(
 		"112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5",
@@ -84,22 +66,22 @@ func (t *IncognitoTestSuite) TestSendPTokenWithFeePtoken() {
 
 func (t *IncognitoTestSuite) TestGetBalance() {
 	//native coin
-	tx, err := t.wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", "0000000000000000000000000000000000000000000000000000000000000004") //prv
+	amountPrv, err := t.wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", "0000000000000000000000000000000000000000000000000000000000000004") //prv
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	fmt.Println(tx)
+	fmt.Println(amountPrv)
 
 	//pToken
-	tx, err = t.wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", "ffd8d42dc40a8d166ea4848baf8b5f6e9fe0e9c30d60062eb7d44a8df9e00854") //eth
+	amountEth, err := t.wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", "ffd8d42dc40a8d166ea4848baf8b5f6e9fe0e9c30d60062eb7d44a8df9e00854") //eth
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	fmt.Println(tx)
+	fmt.Println(amountEth)
 }
 
 func (t *IncognitoTestSuite) TestTransactionByReceivers() {
