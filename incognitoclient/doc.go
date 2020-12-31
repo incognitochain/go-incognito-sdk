@@ -14,7 +14,7 @@ Installation
 
 To download the specific tagged release, run:
 
-	go get github.com/incognitochain/go-incognito-sdk@V0.0.1
+	go get github.com/incognitochain/go-incognito-sdk@new-tag
 
 It requires Go 1.13 or later due to usage of Go Modules.
 
@@ -51,16 +51,13 @@ Example:
 		fmt.Println("shard id", shardId)
 
 		//send prv
-		listPaymentAddresses := entity.WalletSend{
-			Type: 0,
-			PaymentAddresses: map[string]uint64{
-				"12Rsf3wFnThr3T8dMafmaw4b3CzUatNao61dkj8KyoHfH5VWr4ravL32sunA2z9UhbNnyijzWFaVDvacJPSRFAq66HU7YBWjwfWR7Ff": 500000000000,
-			},
-		}
-
-		tx, err := wallet.CreateAndSendConstantTransaction(
+		tx, err := wallet.SendToken(
 			"112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5",
-			listPaymentAddresses,
+			"12Rsf3wFnThr3T8dMafmaw4b3CzUatNao61dkj8KyoHfH5VWr4ravL32sunA2z9UhbNnyijzWFaVDvacJPSRFAq66HU7YBWjwfWR7Ff",
+			publicIncognito.GetPRVToken(),
+			500000000000,
+			5,
+			"",
 		)
 
 		if err != nil {

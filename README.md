@@ -7,7 +7,7 @@ etc... with Incognito blockchain.
 
 Incognito SDK use as library
 
-Installation
+#####Installation
 
 Using go module
 
@@ -15,7 +15,7 @@ Using go module
 go get github.com/incognitochain/go-incognito-sdk@new-tag
 ```
 
-Initialization
+#####Initialization
 
 Init new PublicIncognito, setup endpoint url environment
 
@@ -33,18 +33,37 @@ blockInfo := NewBlockInfo(publicIncognito)
 wallet := NewWallet(publicIncognito, blockInfo)
 
 //create new wallet
-wallet.CreateAndSendConstantTransaction(....)
+wallet.CreateWallet()
+
+//send token
+wallet.SendToken(....)
+
+//get balance
+wallet.GetBalance(...)
 ```
 
 To staking a node
 
 ```
 stake = NewStake(publicIncognito)
-stake.ListUnstake()
 
+//list unstake
+stake.ListUnstake()
+//get reward amount of node
+stake.GetRewardAmount(
 ```
 
-All together
+To get blockchain info
+
+```
+//get blockchain info
+blockInfo.GetChainInfo()
+
+//get best block height of chain
+blockInfo.GetBestBlockHeight(...)
+```
+
+#####All together
 
 ```
 package main
@@ -73,16 +92,14 @@ package main
 		fmt.Println("shard id", shardId)
 		
 		//send Prv token
-		listPaymentAddresses := entity.WalletSend{
-			Type: 0,
-			PaymentAddresses: map[string]uint64{
-				"12Rsf3wFnThr3T8dMafmaw4b3CzUatNao61dkj8KyoHfH5VWr4ravL32sunA2z9UhbNnyijzWFaVDvacJPSRFAq66HU7YBWjwfWR7Ff": 500000000000,
-			},
-		}
-
-		tx, err := wallet.CreateAndSendConstantTransaction(
+		//send prv
+		tx, err := wallet.SendToken(
 			"112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5",
-			listPaymentAddresses,
+			"12Rsf3wFnThr3T8dMafmaw4b3CzUatNao61dkj8KyoHfH5VWr4ravL32sunA2z9UhbNnyijzWFaVDvacJPSRFAq66HU7YBWjwfWR7Ff",
+			publicIncognito.GetPRVToken(),
+			500000000000,
+			5,
+			"",
 		)
 
 		if err != nil {
@@ -91,18 +108,20 @@ package main
 		}
 
 		fmt.Println(tx)
+		
+		amountPrv, err := wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", publicIncognito.GetPRVToken())
+		fmt.Println(amountPrv)
 	}
 ```
 
 ### How to works
 
-Incognito SDK wrap all RPC of blockchain, build raw data at local before call rpc because can't send private key to
-chain
+Incognito SDK wrap all RPC of blockchain, build raw data at device local before call rpc because maybe have issue when send private key to FullNode
 
 The steps:
 
-1. Build raw data
-2. Call rpc to chain
+1. Build raw data at device local
+2. Call RPC with raw data
 3. Get result
 
 UML Diagram
