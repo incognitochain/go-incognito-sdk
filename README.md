@@ -7,7 +7,7 @@ etc... with Incognito blockchain.
 
 Incognito SDK use as library
 
-#####Installation
+##### Installation
 
 Using go module
 
@@ -15,7 +15,7 @@ Using go module
 go get github.com/incognitochain/go-incognito-sdk@new-tag
 ```
 
-#####Initialization
+##### Initialization
 
 Init new PublicIncognito, setup endpoint url environment
 
@@ -63,7 +63,7 @@ blockInfo.GetChainInfo()
 blockInfo.GetBestBlockHeight(...)
 ```
 
-#####All together
+##### All together
 
 ```
 package main
