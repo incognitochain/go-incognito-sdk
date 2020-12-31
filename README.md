@@ -109,8 +109,8 @@ package main
 
 		fmt.Println(tx)
 		
-		amountPrv, err := wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", publicIncognito.GetPRVToken()) //prv
-	    fmt.Println(amountPrv)
+		amountPrv, err := wallet.GetBalance("112t8s4Pdng512MhHmLVJNYqzoEJQ1TG4XZduvjfwYZFJhmuNtGPhUYRko4jSPFBFmeRg6bumKQuhAEMriQ72cpp5SKAkRuXfLCv5xeZx3f5", publicIncognito.GetPRVToken())
+		fmt.Println(amountPrv)
 	}
 ```
 
