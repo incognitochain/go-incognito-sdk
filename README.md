@@ -10,6 +10,7 @@ Incognito SDK use as library
 Installation
 
 Using go module
+
 ```
 go get github.com/incognitochain/go-incognito-sdk@new-tag
 ```
@@ -44,6 +45,7 @@ stake.ListUnstake()
 ```
 
 All together
+
 ```
 package main
 
@@ -60,7 +62,17 @@ package main
 
 		blockInfo := NewBlockInfo(publicIncognito)
 		wallet := NewWallet(publicIncognito, blockInfo)
-
+		
+		//create new a wallet
+		paymentAddress, pubkey, readonlyKey, privateKey, validatorKey, shardId , _ := wallet.CreateWallet()
+		fmt.Println("payment adresss", paymentAddress)
+		fmt.Println("public key", pubkey)
+		fmt.Println("readonly key", readonlyKey)
+		fmt.Println("private key", privateKey)
+		fmt.Println("validator key", validatorKey)
+		fmt.Println("shard id", shardId)
+		
+		//send Prv token
 		listPaymentAddresses := entity.WalletSend{
 			Type: 0,
 			PaymentAddresses: map[string]uint64{
@@ -83,9 +95,12 @@ package main
 ```
 
 ### How to works
-Incognito SDK wrap all RPC of blockchain, build raw data at local before call rpc because can't send private key to chain
+
+Incognito SDK wrap all RPC of blockchain, build raw data at local before call rpc because can't send private key to
+chain
 
 The steps:
+
 1. Build raw data
 2. Call rpc to chain
 3. Get result
