@@ -41,13 +41,14 @@ Example:
 		wallet := NewWallet(publicIncognito, blockInfo)
 
 		//create new a wallet
-        paymentAddress, pubkey, readonlyKey, privateKey, validatorKey, shardId , _ := wallet.CreateWallet()
-        fmt.Println("payment adresss", paymentAddress)
-        fmt.Println("public key", pubkey)
-        fmt.Println("readonly key", readonlyKey)
-        fmt.Println("private key", privateKey)
-        fmt.Println("validator key", validatorKey)
-        fmt.Println("shard id", shardId)
+		paymentAddress, pubkey, readonlyKey, privateKey, validatorKey, shardId , _ := wallet.CreateWallet()
+
+		fmt.Println("payment adresss", paymentAddress)
+		fmt.Println("public key", pubkey)
+		fmt.Println("readonly key", readonlyKey)
+		fmt.Println("private key", privateKey)
+		fmt.Println("validator key", validatorKey)
+		fmt.Println("shard id", shardId)
 
         //send prv
 		listPaymentAddresses := entity.WalletSend{
